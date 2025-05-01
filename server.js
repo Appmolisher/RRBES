@@ -6,16 +6,20 @@ const generateRoutes = require('./routes/generate');
 
 const app = express();
 
-// ✅ Only allow requests from your frontend on Vercel
+// ✅ Fix: Allow your Vercel frontend to talk to your backend
 app.use(cors({
   origin: ['https://resume-rocket-pied.vercel.app', 'http://localhost:3000']
 }));
 
 app.use(bodyParser.json());
 
-// Routes
+// Your AI route
 app.use('/api/generate', generateRoutes);
 
-// Start the server
+// Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Backend is running on port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Backend running on port ${PORT}`));
+
+git add .
+git commit -m "Fix CORS to allow Vercel frontend"
+git push
