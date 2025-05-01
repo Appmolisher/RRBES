@@ -6,11 +6,12 @@ const generateRoutes = require('./routes/generate');
 
 const app = express();
 
+// ✅ FIXED CORS: Added all allowed domains
 app.use(cors({
   origin: [
+    'https://resume-rocket-5g3krvql5-appmolishers-projects.vercel.app',
     'https://resume-rocket-pied.vercel.app',
-    'http://localhost:3000',
-    'https://resume-rocket-5g3krvql5-appmolishers-projects.vercel.app'
+    'http://localhost:3000'
   ]
 }));
 
@@ -20,6 +21,8 @@ app.use('/api/generate', generateRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Backend running on port ${PORT}`));
+
+
 
 
 
