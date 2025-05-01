@@ -7,7 +7,11 @@ const generateRoutes = require('./routes/generate');
 const app = express();
 
 app.use(cors({
-  origin: ['https://resume-rocket-pied.vercel.app', 'http://localhost:3000']
+  origin: [
+    'https://resume-rocket-pied.vercel.app',
+    'http://localhost:3000',
+    'https://resume-rocket-5g3krvql5-appmolishers-projects.vercel.app'
+  ]
 }));
 
 app.use(bodyParser.json());
