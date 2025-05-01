@@ -5,7 +5,10 @@ require('dotenv').config();
 const generateRoutes = require('./routes/generate');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://resume-rocket-pied.vercel.app'
+}));
+
 app.use(bodyParser.json());
 
 app.use('/api/generate', generateRoutes);
