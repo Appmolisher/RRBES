@@ -6,16 +6,20 @@ const generateRoutes = require('./routes/generate');
 
 const app = express();
 
-// ✅ FIXED: Allow CORS from Vercel frontend
+// ✅ Allow Vercel frontend (including OPTIONS preflight)
 app.use(cors({
   origin: [
     'https://resume-rocket-5g3krvql5-appmolishers-projects.vercel.app',
     'http://localhost:3000'
-  ]
+  ],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
 }));
 
-app.use(bodyParser.json());
+// ✅ Handle preflight OPTIONS requests manually (not always auto-handled on Render)
+app.options('*', cors());
 
+app.use(bodyParser.json());
 app.use('/api/generate', generateRoutes);
 
 const PORT = process.env.PORT || 5000;
